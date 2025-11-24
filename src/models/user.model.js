@@ -42,7 +42,7 @@ const UserSchema = new Schema(
     },
     watchHistory: [
       {
-        type: Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId, 
         ref: "Video",
       },
     ],
@@ -69,7 +69,7 @@ UserSchema.methods.isPasswordCorrect = async function (password) {
   return await bcrypt.compare(password, this.password);
 };
 
-//token
+//tokens
 
 UserSchema.methods.generateAccessToken = function () {
   return jwt.sign(
@@ -85,6 +85,7 @@ UserSchema.methods.generateAccessToken = function () {
     }
   );
 };
+
 UserSchema.methods.generateRefreshToken = function () {
   return jwt.sign(
     {

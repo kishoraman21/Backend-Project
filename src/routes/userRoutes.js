@@ -3,7 +3,9 @@ import {
   registerUser,
   loginUser,
   logoutUser,
-  refreshAccessToken
+  refreshAccessToken,
+  getcurrentUser,
+  changeCurrentPassword
 } from "../controllers/userController.js";
 import { upload } from "../middlewares/multer.middleware.js";
 import { verifyJwt } from "../middlewares/auth.middleware.js";
@@ -27,9 +29,8 @@ router.post(
 
 router.post("/login", loginUser);
 router.post("/logout", verifyJwt, logoutUser);
-router.get("/me", verifyJwt, (req, res)=>{
-  res.json({user: req.user})
-})
+router.get("/me", verifyJwt, getcurrentUser)
+router.post("/changepassword", verifyJwt, changeCurrentPassword)
 
 router.post("/refresh-token", refreshAccessToken )
 
